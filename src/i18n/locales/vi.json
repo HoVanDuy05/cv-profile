@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "about": "Giới thiệu",
+    "experience": "Kinh nghiệm",
+    "projects": "Dự án",
+    "skills": "Kỹ năng",
+    "contact": "Liên hệ"
+  },
+  "hero": {
+    "greeting": "XIN CHÀO, TÔI LÀ",
+    "subtitle": "Junior Full-stack Developer",
+    "description": "Tôi đam mê xây dựng các sản phẩm công nghệ hiện đại, mượt mà và tập trung vào trải nghiệm người dùng cuối.",
+    "viewProjects": "Xem Dự Án",
+    "downloadCV": "Tải CV",
+    "ready": "Sẵn sàng cho dự án mới"
+  },
+  "about": {
+    "title": "Về Tôi",
+    "subtitle": "Đam mê sáng tạo và đổi mới trong từng dòng code",
+    "bio1": "Tôi là một lập trình viên Full-stack với niềm đam mê sâu sắc trong việc tạo ra các giải pháp web tối ưu và đẹp mắt. Với sự kết hợp giữa tư duy logic và mắt thẩm mỹ, tôi luôn nỗ lực để mang lại giá trị tốt nhất cho người dùng.",
+    "bio2": "Kỹ năng của tôi trải dài từ việc thiết kế kiến trúc backend mạnh mẽ cho đến việc chăm chút từng pixel trên giao diện frontend. Tôi luôn cập nhật những công nghệ mới nhất để áp dụng vào các dự án của mình.",
+    "stats": {
+      "exp": "Kinh nghiệm",
+      "projects": "Dự án hoàn thiện",
+      "clients": "Khách hàng"
+    },
+    "details": {
+      "title": "Thông tin chi tiết",
+      "email": "Email",
+      "phone": "SĐT",
+      "address": "Địa chỉ",
+      "education": "Học vấn"
+    }
+  },
+  "experience": {
+    "title": "Kinh Nghiệm & Học Vấn",
+    "subtitle": "Hành trình phát triển và học hỏi không ngừng nghỉ",
+    "professional": "Kinh nghiệm làm việc",
+    "academic": "Hành trình học vấn"
+  },
+  "projects": {
+    "title": "Dự Án Tiêu Biểu",
+    "subtitle": "Những sản phẩm tâm huyết mà tôi đã thực hiện",
+    "viewDetails": "Xem Chi Tiết",
+    "sourceCode": "Source Code"
+  },
+  "skills": {
+    "title": "Kỹ Năng",
+    "subtitle": "Các công nghệ và công cụ mà tôi sử dụng thành thạo",
+    "technical": "Kỹ năng Chuyên môn",
+    "languages": "Ngoại ngữ",
+    "others": "Kỹ năng khác"
+  },
+  "contact": {
+    "title": "Liên Hệ",
+    "subtitle": "Đừng ngần ngại kết nối với tôi cho các cơ hội hợp tác",
+    "description": "Tôi luôn sẵn sàng thảo luận về các dự án mới, ý tưởng sáng tạo hoặc các cơ hội hợp tác.",
+    "form": {
+      "name": "Họ và tên",
+      "namePlaceholder": "Nhập tên của bạn",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "subject": "Tiêu đề",
+      "subjectPlaceholder": "Bạn muốn thảo luận về vấn đề gì?",
+      "message": "Tin nhắn",
+      "messagePlaceholder": "Nội dung tin nhắn...",
+      "send": "Gửi Tin Nhắn"
+    }
+  },
+  "footer": {
+    "rights": "Tất cả quyền được bảo lưu. Xây dựng bằng React & Mantine."
+  }
+}

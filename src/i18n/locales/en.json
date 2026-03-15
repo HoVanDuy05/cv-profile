@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "HELLO, I AM",
+    "subtitle": "Junior Full-stack Developer",
+    "description": "I am passionate about building modern, smooth technology products with a focus on end-user experience.",
+    "viewProjects": "View Projects",
+    "downloadCV": "Download CV",
+    "ready": "Available for new projects"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Passion for creativity and innovation in every line of code",
+    "bio1": "I am a Full-stack developer with a deep passion for creating beautiful and optimized web solutions. By combining logical thinking and aesthetic sense, I always strive to bring the best value to users.",
+    "bio2": "My skills range from designing robust backend architectures to meticulously crafting every pixel on the frontend. I always keep updated with the latest technologies to apply to my projects.",
+    "stats": {
+      "exp": "Experience",
+      "projects": "Completed Projects",
+      "clients": "Clients"
+    },
+    "details": {
+      "title": "Detailed Information",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "education": "Education"
+    }
+  },
+  "experience": {
+    "title": "Experience & Education",
+    "subtitle": "A journey of continuous development and learning",
+    "professional": "Work Experience",
+    "academic": "Academic Journey"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "The products I have put my heart into",
+    "viewDetails": "View Details",
+    "sourceCode": "Source Code"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies and tools I am proficient in",
+    "technical": "Technical Skills",
+    "languages": "Languages",
+    "others": "Other Skills"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Don't hesitate to connect with me for collaboration opportunities",
+    "description": "I am always ready to discuss new projects, creative ideas, or collaboration opportunities.",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "What would you like to discuss?",
+      "message": "Message",
+      "messagePlaceholder": "Message content...",
+      "send": "Send Message"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved. Built with React & Mantine."
+  }
+}

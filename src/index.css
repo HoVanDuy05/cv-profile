@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@400;500;600&family=Syne:wght@800&display=swap');
+
+body {
+  margin: 0;
+  background-color: var(--mantine-color-body);
+  color: var(--mantine-color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Sora', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--mantine-color-body);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mantine-color-violet-6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mantine-color-violet-7);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.glass-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
+  border-bottom: 1px solid var(--mantine-color-default-border);
+  min-height: var(--mantine-other-navbarHeight);
+  transition: background-color 0.3s ease, border-color 0.3s ease, height 0.3s ease;
+}
+
+.text-gradient {
+  background: var(--mantine-other-gradientPrimary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-link {
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--mantine-color-violet-6);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--mantine-color-violet-6) !important;
+}
+
+.nav-link:hover {
+  color: var(--mantine-color-violet-5) !important;
+}
