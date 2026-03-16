@@ -23,8 +23,8 @@ const Skills = ({ skills }: SkillsProps) => {
     { name: 'MySQL / Redis', level: 80 },
   ];
 
-  const languages = skills?.language.map(s => s.name) || ['Tiếng Việt (Bản ngữ)', 'Tiếng Anh (IELTS 7.5)', 'Tiếng Nhật (N3)'];
-  const others = skills?.other.map(s => s.name) || ['Git', 'Agile/Scrum', 'Figma', 'Problem Solving', 'Team Leadership'];
+  const languages = skills?.language?.map(s => s.name) || ['Tiếng Việt (Bản ngữ)', 'Tiếng Anh (IELTS 7.5)', 'Tiếng Nhật (N3)'];
+  const others = skills?.other?.map(s => s.name) || ['Git', 'Agile/Scrum', 'Figma', 'Problem Solving', 'Team Leadership'];
 
   return (
     <Section id="skills" title={t('skills.title')} subtitle={t('skills.subtitle')}>

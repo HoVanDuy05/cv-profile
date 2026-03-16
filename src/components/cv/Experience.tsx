@@ -17,7 +17,7 @@ const Experience = ({ experiences }: ExperienceProps) => {
   const bulletSize = isMobile ? 32 : 40;
   const iconSize = isMobile ? 18 : 22;
 
-  const workExperiences = experiences?.work || [
+  const workExperiences = (experiences?.work && experiences.work.length > 0) ? experiences.work : [
     {
       title: 'Junior Fullstack Developer',
       company: 'Freelance / Personal Projects',
@@ -27,7 +27,7 @@ const Experience = ({ experiences }: ExperienceProps) => {
     }
   ];
 
-  const educationExperiences = experiences?.edu || [
+  const educationExperiences = (experiences?.edu && experiences.edu.length > 0) ? experiences.edu : [
     {
       title: 'Lập trình Web (Full-stack)',
       company: 'Cao đẳng FPT Polytechnic',

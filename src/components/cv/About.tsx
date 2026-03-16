@@ -5,12 +5,16 @@ import { useTranslation } from 'react-i18next';
 import { APP_CONFIG } from '@/constants';
 import { motion } from 'framer-motion';
 
-const About = () => {
+interface AboutProps {
+  profile?: any;
+}
+
+const About = ({ profile }: AboutProps) => {
   const { t } = useTranslation();
   const stats = [
-    { icon: <IconDeviceLaptop size={24} />, title: APP_CONFIG.EXPERIENCE_YEARS, subtitle: t('about.stats.exp') },
-    { icon: <IconCode size={24} />, title: APP_CONFIG.PROJECTS_COUNT, subtitle: t('about.stats.projects') },
-    { icon: <IconRocket size={24} />, title: APP_CONFIG.CLIENTS_COUNT, subtitle: t('about.stats.clients') },
+    { icon: <IconDeviceLaptop size={24} />, title: profile?.experience_years || APP_CONFIG.EXPERIENCE_YEARS, subtitle: t('about.stats.exp') },
+    { icon: <IconCode size={24} />, title: profile?.projects_count || APP_CONFIG.PROJECTS_COUNT, subtitle: t('about.stats.projects') },
+    { icon: <IconRocket size={24} />, title: profile?.clients_count || APP_CONFIG.CLIENTS_COUNT, subtitle: t('about.stats.clients') },
   ];
 
   return (
@@ -19,10 +23,7 @@ const About = () => {
         <Grid.Col span={{ base: 12, md: 7 }}>
           <Stack gap="md">
             <Text size="lg">
-              {t('about.bio1')}
-            </Text>
-            <Text size="lg">
-              {t('about.bio2')}
+              {profile?.bio || t('about.bio1')}
             </Text>
           </Stack>
 
@@ -69,19 +70,19 @@ const About = () => {
               <Text fw={600} size="lg">{t('about.details.title')}</Text>
               <Group justify="space-between">
                 <Text c="dimmed">{t('about.details.email')}:</Text>
-                <Text fw={500}>{APP_CONFIG.EMAIL}</Text>
+                <Text fw={500}>{profile?.email || APP_CONFIG.EMAIL}</Text>
               </Group>
               <Group justify="space-between">
                 <Text c="dimmed">{t('about.details.phone')}:</Text>
-                <Text fw={500}>{APP_CONFIG.PHONE}</Text>
+                <Text fw={500}>{profile?.phone || APP_CONFIG.PHONE}</Text>
               </Group>
               <Group justify="space-between">
                 <Text c="dimmed">{t('about.details.address')}:</Text>
-                <Text fw={500}>{APP_CONFIG.LOCATION}</Text>
+                <Text fw={500}>{profile?.location || APP_CONFIG.LOCATION}</Text>
               </Group>
               <Group justify="space-between">
                 <Text c="dimmed">{t('about.details.education')}:</Text>
-                <Text fw={500}>{APP_CONFIG.EDUCATION}</Text>
+                <Text fw={500}>{profile?.education || APP_CONFIG.EDUCATION}</Text>
               </Group>
             </Stack>
           </Card>

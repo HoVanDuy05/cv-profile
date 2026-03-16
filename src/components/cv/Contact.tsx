@@ -9,7 +9,11 @@ import SocialInfo from '@/components/common/SocialInfo';
 import { sendContactMessage } from '@/services/api';
 import { useForm } from '@mantine/form';
 
-const Contact = () => {
+interface ContactProps {
+  profile?: any;
+}
+
+const Contact = ({ profile }: ContactProps) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'success' | 'error' | null>(null);
@@ -63,7 +67,7 @@ const Contact = () => {
                   </ActionIcon>
                   <Box>
                     <Text size="xs" c="dimmed" tt="uppercase" fw={700}>{t('contact.form.email')}</Text>
-                    <Text fw={500}>{APP_CONFIG.EMAIL}</Text>
+                    <Text fw={500}>{profile?.email || APP_CONFIG.EMAIL}</Text>
                   </Box>
                 </Group>
 
@@ -73,7 +77,7 @@ const Contact = () => {
                   </ActionIcon>
                   <Box>
                     <Text size="xs" c="dimmed" tt="uppercase" fw={700}>{t('about.details.phone')}</Text>
-                    <Text fw={500}>{APP_CONFIG.PHONE}</Text>
+                    <Text fw={500}>{profile?.phone || APP_CONFIG.PHONE}</Text>
                   </Box>
                 </Group>
 
@@ -83,12 +87,12 @@ const Contact = () => {
                   </ActionIcon>
                   <Box>
                     <Text size="xs" c="dimmed" tt="uppercase" fw={700}>{t('about.details.address')}</Text>
-                    <Text fw={500}>{APP_CONFIG.LOCATION}</Text>
+                    <Text fw={500}>{profile?.location || APP_CONFIG.LOCATION}</Text>
                   </Box>
                 </Group>
               </Stack>
 
-              <SocialInfo variant="filled" size="lg" gap="md" />
+              <SocialInfo variant="filled" size="lg" gap="md" profile={profile} />
             </Stack>
           </motion.div>
         </Grid.Col>

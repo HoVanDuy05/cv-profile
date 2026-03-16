@@ -33,6 +33,14 @@ const Projects = ({ projects: dynamicProjects }: ProjectsProps) => {
     }
   ];
 
+  if (!projects || projects.length === 0) {
+    return (
+      <Section id="projects" title={t('projects.title')} subtitle={t('projects.subtitle')}>
+        <Text ta="center" c="dimmed">Chưa có dự án nào được chia sẻ.</Text>
+      </Section>
+    );
+  }
+
   return (
     <Section id="projects" title={t('projects.title')} subtitle={t('projects.subtitle')}>
       <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="xl">

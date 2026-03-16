@@ -6,9 +6,10 @@ interface SocialInfoProps {
   size?: ActionIconProps['size'];
   variant?: ActionIconProps['variant'];
   gap?: string | number;
+  profile?: any;
 }
 
-const SocialInfo = ({ size = 'lg', variant = 'light', gap = 'md' }: SocialInfoProps) => {
+const SocialInfo = ({ size = 'lg', variant = 'light', gap = 'md', profile }: SocialInfoProps) => {
   return (
     <Group gap={gap}>
       <ActionIcon 
@@ -17,7 +18,7 @@ const SocialInfo = ({ size = 'lg', variant = 'light', gap = 'md' }: SocialInfoPr
         variant={variant} 
         color="blue" 
         component="a" 
-        href={APP_CONFIG.SOCIAL.LINKEDIN}
+        href={profile?.linkedin || APP_CONFIG.SOCIAL.LINKEDIN}
         target="_blank"
       >
         <IconBrandLinkedin size={20} />
@@ -28,7 +29,7 @@ const SocialInfo = ({ size = 'lg', variant = 'light', gap = 'md' }: SocialInfoPr
         variant={variant} 
         color="dark" 
         component="a" 
-        href={APP_CONFIG.SOCIAL.GITHUB}
+        href={profile?.github || APP_CONFIG.SOCIAL.GITHUB}
         target="_blank"
       >
         <IconBrandGithub size={20} />

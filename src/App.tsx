@@ -43,11 +43,11 @@ function App() {
       </AnimatePresence>
       <MainLayout>
       <Hero profile={cvData?.profile} />
-      <About />
+      <About profile={cvData?.profile} />
       <Experience experiences={cvData?.experiences} />
       <Projects projects={cvData?.projects} />
       <Skills skills={cvData?.skills} />
-      <Contact />
+      <Contact profile={cvData?.profile} />
       </MainLayout>
     </>
   );
