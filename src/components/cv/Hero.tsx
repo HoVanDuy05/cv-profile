@@ -6,8 +6,18 @@ import { APP_CONFIG } from '@/constants';
 import SafeImage from '@/components/common/SafeImage';
 import profileImg from '@/assets/images/profile.jpg';
 
-const Hero = () => {
+interface HeroProps {
+  profile?: any;
+}
+
+const Hero = ({ profile }: HeroProps) => {
   const { t } = useTranslation();
+
+  const name = profile?.name || APP_CONFIG.NAME;
+  const title = profile?.title || t('hero.subtitle');
+  const bio = profile?.bio || t('hero.description');
+  const avatar = profile?.avatar ? `https://profile-be-js9l.onrender.com${profile.avatar}` : profileImg;
+
   return (
     <Box
       mih="calc(100vh - var(--mantine-other-navbarHeight))"
@@ -39,20 +49,20 @@ const Hero = () => {
                 mb="xs"
                 style={{ lineHeight: 1.1 }}
               >
-                {APP_CONFIG.NAME.split(' ')[0]} <Text 
-                  span 
-                  variant="gradient" 
-                  gradient={{ from: 'violet', to: 'cyan', deg: 90 }} 
+                {name.split(' ')[0]} <Text
+                  span
+                  variant="gradient"
+                  gradient={{ from: 'violet', to: 'cyan', deg: 90 }}
                   inherit
                 >
-                  {APP_CONFIG.NAME.split(' ').slice(1).join(' ')}
+                  {name.split(' ').slice(1).join(' ')}
                 </Text>
               </Title>
               <Title order={2} fw={500} size="clamp(1.2rem, 3vw, 1.8rem)" c="dimmed" mb="xl">
-                {t('hero.subtitle')}
+                {title}
               </Title>
               <Text size="lg" c="dimmed" mb={40} style={{ maxWidth: rem(500) }}>
-                {t('hero.description')}
+                {bio}
               </Text>
 
               <Group gap="md">
@@ -84,44 +94,73 @@ const Hero = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
             >
-              <Box pos="relative">
-                <Box 
-                  pos="absolute"
-                  top={20}
-                  left={20}
-                  w="100%"
-                  h="100%"
-                  bg="violet.6"
-                  opacity={0.1}
-                  style={{ borderRadius: 'var(--mantine-radius-lg)' }}
-                />
-                <SafeImage
-                  src={profileImg}
-                  radius="lg"
-                  alt="Profile"
-                  style={{ 
+              <Box pos="relative" maw={rem(450)} mx="auto">
+                <Box
+                  style={{
+                    position: 'relative',
+                    zIndex: 1,
+                    borderRadius: 'var(--mantine-radius-lg)',
+                    overflow: 'hidden',
+                    aspectRatio: '4/5',
                     boxShadow: 'var(--mantine-shadow-xl)',
-                    border: '8px solid white'
-                  }}
-                />
-                <Box 
-                  pos="absolute"
-                  bottom={-20}
-                  right={-20}
-                  bg="var(--mantine-color-body)"
-                  p="md"
-                  display="flex"
-                  style={{ 
-                    alignItems: 'center', 
-                    gap: 'var(--mantine-spacing-sm)', 
-                    borderRadius: 'var(--mantine-radius-md)',
-                    border: '1px solid var(--mantine-color-default-border)',
-                    boxShadow: 'var(--mantine-shadow-md)'
+                    border: '4px solid var(--mantine-color-body)',
                   }}
                 >
-                  <Box w={12} h={12} bg="green.6" style={{ borderRadius: 'var(--mantine-radius-xl)' }} />
-                  <Text size="sm" fw={600}>{t('hero.ready')}</Text>
+                  <SafeImage
+                    src={avatar}
+                    alt="Profile"
+                    w="100%"
+                    h="100%"
+                    style={{
+                      objectFit: 'cover',
+                    }}
+                  />
+
+                  {/* Subtle overlay for better text contrast/premium feel */}
+                  <Box
+                    pos="absolute"
+                    inset={0}
+                    style={{
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%)',
+                      pointerEvents: 'none'
+                    }}
+                  />
                 </Box>
+
+                <motion.div
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                >
+                  <Box
+                    pos="absolute"
+                    bottom={20}
+                    right={-15}
+                    bg="var(--mantine-color-body)"
+                    px="lg"
+                    py="sm"
+                    display="flex"
+                    style={{
+                      alignItems: 'center',
+                      gap: 'var(--mantine-spacing-sm)',
+                      borderRadius: 'var(--mantine-radius-xl)',
+                      border: '1px solid var(--mantine-color-violet-light)',
+                      boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                      zIndex: 2
+                    }}
+                  >
+                    <Box
+                      w={10}
+                      h={10}
+                      bg="green.6"
+                      style={{
+                        borderRadius: '50%',
+                        boxShadow: '0 0 8px var(--mantine-color-green-default)'
+                      }}
+                    />
+                    <Text size="sm" fw={700} c="dimmed">{t('hero.ready')}</Text>
+                  </Box>
+                </motion.div>
               </Box>
             </motion.div>
           </Grid.Col>

@@ -3,9 +3,18 @@ import Section from '@/components/common/Section';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 
-const Skills = () => {
+interface SkillsProps {
+  skills?: {
+    technical: any[];
+    language: any[];
+    other: any[];
+  } | null;
+}
+
+const Skills = ({ skills }: SkillsProps) => {
   const { t } = useTranslation();
-  const technicalSkills = [
+
+  const technicalSkills = skills?.technical || [
     { name: 'React / Next.js', level: 95 },
     { name: 'Node.js / Express', level: 90 },
     { name: 'TypeScript', level: 85 },
@@ -14,8 +23,8 @@ const Skills = () => {
     { name: 'MySQL / Redis', level: 80 },
   ];
 
-  const languages = ['Tiếng Việt (Bản ngữ)', 'Tiếng Anh (IELTS 7.5)', 'Tiếng Nhật (N3)'];
-  const others = ['Git', 'Agile/Scrum', 'Figma', 'Problem Solving', 'Team Leadership'];
+  const languages = skills?.language.map(s => s.name) || ['Tiếng Việt (Bản ngữ)', 'Tiếng Anh (IELTS 7.5)', 'Tiếng Nhật (N3)'];
+  const others = skills?.other.map(s => s.name) || ['Git', 'Agile/Scrum', 'Figma', 'Problem Solving', 'Team Leadership'];
 
   return (
     <Section id="skills" title={t('skills.title')} subtitle={t('skills.subtitle')}>
@@ -30,7 +39,7 @@ const Skills = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-                  <Box mb="sm">
+              <Box mb="sm">
                 <Group justify="space-between" mb={5}>
                   <Text fw={500}>{skill.name}</Text>
                   <Text size="sm" c="dimmed">{skill.level}%</Text>

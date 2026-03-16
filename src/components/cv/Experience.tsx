@@ -4,33 +4,40 @@ import { IconBriefcase, IconSchool } from '@tabler/icons-react';
 import Section from '@/components/common/Section';
 import { useTranslation } from 'react-i18next';
 
-const Experience = () => {
+interface ExperienceProps {
+  experiences?: {
+    work: any[];
+    edu: any[];
+  } | null;
+}
+
+const Experience = ({ experiences }: ExperienceProps) => {
   const { t } = useTranslation();
   const isMobile = useMediaQuery('(max-width: 48em)');
   const bulletSize = isMobile ? 32 : 40;
   const iconSize = isMobile ? 18 : 22;
 
-  const workExperiences = [
+  const workExperiences = experiences?.work || [
     {
       title: 'Junior Fullstack Developer',
       company: 'Freelance / Personal Projects',
       period: '2023 - Present',
-      description: 'Phát triển các ứng dụng web hiện đại sử dụng React, Node.js và Laravel. Tập trung vào tối ưu hóa mã nguồn và trải nghiệm người dùng.',
+      description: 'Phát triển các ứng dụng web hiện đại sử dụng React, Node.js và Laravel.',
       type: 'work'
     }
   ];
 
-  const educationExperiences = [
+  const educationExperiences = experiences?.edu || [
     {
       title: 'Lập trình Web (Full-stack)',
       company: 'Cao đẳng FPT Polytechnic',
       period: '2024 - 2026',
-      description: 'Chuyên ngành Phát triển phần mềm, tập trung vào các công nghệ web hiện đại và quy trình phát triển sản phẩm thực tế.',
+      description: 'Chuyên ngành Phát triển phần mềm.',
       type: 'edu'
     }
   ];
 
-  const renderTimeline = (items: typeof workExperiences) => (
+  const renderTimeline = (items: any[]) => (
     <Timeline
       active={0}
       bulletSize={bulletSize}

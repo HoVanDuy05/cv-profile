@@ -5,81 +5,110 @@ import SafeImage from '@/components/common/SafeImage';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import project1 from '@/assets/images/project1.png';
-import project2 from '@/assets/images/project2.png';
-import project3 from '@/assets/images/project3.png';
 
-const Projects = () => {
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  image: string;
+  demo_link: string;
+  github_link: string;
+}
+
+interface ProjectsProps {
+  projects?: Project[] | null;
+}
+
+const Projects = ({ projects: dynamicProjects }: ProjectsProps) => {
   const { t } = useTranslation();
-  const projects = [
+  
+  const projects = dynamicProjects || [
     {
       title: 'Hệ thống Quản lý Doanh nghiệp',
-      desc: 'Nền tảng ERP tích hợp quản lý kho, nhân sự và tài chính.',
-      tech: ['React', 'Node.js', 'PostgreSQL'],
-      image: project1
-    },
-    {
-      title: 'Ứng dụng E-Learning',
-      desc: 'Hệ thống học trực tuyến với tính năng video streaming và thi trắc nghiệm.',
-      tech: ['Next.js', 'Firebase', 'Tailwind'],
-      image: project2
-    },
-    {
-      title: 'Sàn Thương mại Điện tử',
-      desc: 'Nền t mảng mua sắm với trải nghiệm mượt mà, hỗ trợ thanh toán online.',
-      tech: ['React Native', 'Shopify API', 'Vite'],
-      image: project3
+      description: 'Nền tảng ERP tích hợp quản lý kho, nhân sự và tài chính.',
+      tags: ['React', 'Node.js', 'PostgreSQL'],
+      image: project1,
+      demo_link: '#',
+      github_link: '#'
     }
   ];
 
   return (
     <Section id="projects" title={t('projects.title')} subtitle={t('projects.subtitle')}>
       <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="xl">
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <Card 
-              shadow="sm" 
-              padding="lg" 
-              radius="md" 
-              withBorder 
-              display="flex"
-              bg="light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8))"
-              style={{ height: '100%', flexDirection: 'column' }}
+        {projects.map((project, index) => {
+          const imageSrc = project.image.startsWith('/') 
+            ? `https://profile-be-js9l.onrender.com${project.image}` 
+            : project.image;
+
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
             >
-              <Card.Section>
-                <SafeImage src={project.image} h={200} alt={project.title} />
-              </Card.Section>
+              <Card 
+                shadow="sm" 
+                padding="lg" 
+                radius="md" 
+                withBorder 
+                display="flex"
+                bg="light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8))"
+                style={{ height: '100%', flexDirection: 'column' }}
+              >
+                <Card.Section>
+                  <SafeImage 
+                    src={imageSrc} 
+                    h={220} 
+                    alt={project.title} 
+                    style={{ objectFit: 'cover' }}
+                  />
+                </Card.Section>
 
-              <Group justify="space-between" mt="md" mb="xs">
-                <Text fw={700} size="lg">{project.title}</Text>
-              </Group>
+                <Group justify="space-between" mt="md" mb="xs">
+                  <Text fw={700} size="lg">{project.title}</Text>
+                </Group>
 
-              <Group gap={5} mb="md">
-                {project.tech.map((tag) => (
-                  <Badge key={tag} variant="light" color="violet">{tag}</Badge>
-                ))}
-              </Group>
+                <Group gap={5} mb="md">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="light" color="violet">{tag}</Badge>
+                  ))}
+                </Group>
 
-              <Text size="sm" c="dimmed" mb="xl" style={{ flex: 1 }}>
-                {project.desc}
-              </Text>
+                <Text size="sm" c="dimmed" mb="xl" style={{ flex: 1 }}>
+                  {project.description}
+                </Text>
 
-              <Group gap="sm" mt="auto">
-                <Button variant="light" color="violet" fullWidth leftSection={<IconExternalLink size={16} />}>
-                  {t('projects.viewDetails')}
-                </Button>
-                <Button variant="subtle" color="gray" fullWidth leftSection={<IconCode size={16} />}>
-                  {t('projects.sourceCode')}
-                </Button>
-              </Group>
-            </Card>
-          </motion.div>
-        ))}
+                <Group gap="sm" mt="auto">
+                  <Button 
+                    variant="light" 
+                    color="violet" 
+                    fullWidth 
+                    leftSection={<IconExternalLink size={16} />}
+                    component="a"
+                    href={project.demo_link}
+                    target="_blank"
+                  >
+                    {t('projects.viewDetails')}
+                  </Button>
+                  <Button 
+                    variant="subtle" 
+                    color="gray" 
+                    fullWidth 
+                    leftSection={<IconCode size={16} />}
+                    component="a"
+                    href={project.github_link}
+                    target="_blank"
+                  >
+                    {t('projects.sourceCode')}
+                  </Button>
+                </Group>
+              </Card>
+            </motion.div>
+          );
+        })}
       </SimpleGrid>
     </Section>
   );
