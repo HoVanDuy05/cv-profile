@@ -3,7 +3,7 @@ import { Grid, TextInput, Textarea, Button, Stack, Text, Box, Group, ActionIcon,
 import { IconMail, IconPhone, IconMapPin, IconCheck, IconAlertCircle } from '@tabler/icons-react';
 import Section from '@/components/common/Section';
 import { useTranslation } from 'react-i18next';
-import { APP_CONFIG } from '@/constants';
+
 import { motion } from 'framer-motion';
 import SocialInfo from '@/components/common/SocialInfo';
 import { sendContactMessage } from '@/services/api';
@@ -67,7 +67,7 @@ const Contact = ({ profile }: ContactProps) => {
                   </ActionIcon>
                   <Box>
                     <Text size="xs" c="dimmed" tt="uppercase" fw={700}>{t('contact.form.email')}</Text>
-                    <Text fw={500}>{profile?.email || APP_CONFIG.EMAIL}</Text>
+                    <Text fw={500}>{profile?.email || 'N/A'}</Text>
                   </Box>
                 </Group>
 
@@ -77,7 +77,7 @@ const Contact = ({ profile }: ContactProps) => {
                   </ActionIcon>
                   <Box>
                     <Text size="xs" c="dimmed" tt="uppercase" fw={700}>{t('about.details.phone')}</Text>
-                    <Text fw={500}>{profile?.phone || APP_CONFIG.PHONE}</Text>
+                    <Text fw={500}>{profile?.phone || 'N/A'}</Text>
                   </Box>
                 </Group>
 
@@ -87,7 +87,7 @@ const Contact = ({ profile }: ContactProps) => {
                   </ActionIcon>
                   <Box>
                     <Text size="xs" c="dimmed" tt="uppercase" fw={700}>{t('about.details.address')}</Text>
-                    <Text fw={500}>{profile?.location || APP_CONFIG.LOCATION}</Text>
+                    <Text fw={500}>{profile?.location || 'N/A'}</Text>
                   </Box>
                 </Group>
               </Stack>

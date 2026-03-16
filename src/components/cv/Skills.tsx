@@ -14,17 +14,17 @@ interface SkillsProps {
 const Skills = ({ skills }: SkillsProps) => {
   const { t } = useTranslation();
 
-  const technicalSkills = skills?.technical || [
-    { name: 'React / Next.js', level: 95 },
-    { name: 'Node.js / Express', level: 90 },
-    { name: 'TypeScript', level: 85 },
-    { name: 'PHP / Laravel', level: 85 },
-    { name: 'PostgreSQL / MongoDB', level: 85 },
-    { name: 'MySQL / Redis', level: 80 },
-  ];
+  const technicalSkills = (skills?.technical && skills.technical.length > 0) ? skills.technical : [];
+  const languages = skills?.language?.map(s => s.name) || [];
+  const others = skills?.other?.map(s => s.name) || [];
 
-  const languages = skills?.language?.map(s => s.name) || ['Tiếng Việt (Bản ngữ)', 'Tiếng Anh (IELTS 7.5)', 'Tiếng Nhật (N3)'];
-  const others = skills?.other?.map(s => s.name) || ['Git', 'Agile/Scrum', 'Figma', 'Problem Solving', 'Team Leadership'];
+  if (technicalSkills.length === 0 && languages.length === 0 && others.length === 0) {
+    return (
+      <Section id="skills" title={t('skills.title')} subtitle={t('skills.subtitle')}>
+        <Text ta="center" c="dimmed">Chưa có kỹ năng nào được chia sẻ.</Text>
+      </Section>
+    );
+  }
 
   return (
     <Section id="skills" title={t('skills.title')} subtitle={t('skills.subtitle')}>

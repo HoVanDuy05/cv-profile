@@ -4,6 +4,7 @@ import Section from '@/components/common/Section';
 import SafeImage from '@/components/common/SafeImage';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import { getImageUrl } from '@/services/api';
 import project1 from '@/assets/images/project1.png';
 
 interface Project {
@@ -45,9 +46,7 @@ const Projects = ({ projects: dynamicProjects }: ProjectsProps) => {
     <Section id="projects" title={t('projects.title')} subtitle={t('projects.subtitle')}>
       <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="xl">
         {projects.map((project, index) => {
-          const imageSrc = project.image.startsWith('/') 
-            ? `https://profile-be-js9l.onrender.com${project.image}` 
-            : project.image;
+          const imageSrc = getImageUrl(project.image);
 
           return (
             <motion.div

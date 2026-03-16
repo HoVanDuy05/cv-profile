@@ -45,3 +45,12 @@ export const sendContactMessage = async (data: {
 
   return result;
 };
+
+export const getImageUrl = (path: string | null | undefined) => {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  
+  // Lấy domain từ API_BASE_URL (loại bỏ /api ở cuối)
+  const baseUrl = API_BASE_URL?.replace(/\/api$/, '') || '';
+  return `${baseUrl}${path.startsWith('/') ? '' : '/'}${path}`;
+};

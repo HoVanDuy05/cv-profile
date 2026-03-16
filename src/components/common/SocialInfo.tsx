@@ -1,6 +1,5 @@
 import { Group, ActionIcon, type ActionIconProps } from '@mantine/core';
 import { IconBrandLinkedin, IconBrandGithub } from '@tabler/icons-react';
-import { APP_CONFIG } from '@/constants';
 
 interface SocialInfoProps {
   size?: ActionIconProps['size'];
@@ -18,7 +17,7 @@ const SocialInfo = ({ size = 'lg', variant = 'light', gap = 'md', profile }: Soc
         variant={variant} 
         color="blue" 
         component="a" 
-        href={profile?.linkedin || APP_CONFIG.SOCIAL.LINKEDIN}
+        href={profile?.linkedin || '#'}
         target="_blank"
       >
         <IconBrandLinkedin size={20} />
@@ -29,7 +28,7 @@ const SocialInfo = ({ size = 'lg', variant = 'light', gap = 'md', profile }: Soc
         variant={variant} 
         color="dark" 
         component="a" 
-        href={profile?.github || APP_CONFIG.SOCIAL.GITHUB}
+        href={profile?.github || '#'}
         target="_blank"
       >
         <IconBrandGithub size={20} />

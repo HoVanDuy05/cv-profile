@@ -17,25 +17,16 @@ const Experience = ({ experiences }: ExperienceProps) => {
   const bulletSize = isMobile ? 32 : 40;
   const iconSize = isMobile ? 18 : 22;
 
-  const workExperiences = (experiences?.work && experiences.work.length > 0) ? experiences.work : [
-    {
-      title: 'Junior Fullstack Developer',
-      company: 'Freelance / Personal Projects',
-      period: '2023 - Present',
-      description: 'Phát triển các ứng dụng web hiện đại sử dụng React, Node.js và Laravel.',
-      type: 'work'
-    }
-  ];
+  const workExperiences = (experiences?.work && experiences.work.length > 0) ? experiences.work : [];
+  const educationExperiences = (experiences?.edu && experiences.edu.length > 0) ? experiences.edu : [];
 
-  const educationExperiences = (experiences?.edu && experiences.edu.length > 0) ? experiences.edu : [
-    {
-      title: 'Lập trình Web (Full-stack)',
-      company: 'Cao đẳng FPT Polytechnic',
-      period: '2024 - 2026',
-      description: 'Chuyên ngành Phát triển phần mềm.',
-      type: 'edu'
-    }
-  ];
+  if (workExperiences.length === 0 && educationExperiences.length === 0) {
+    return (
+      <Section id="experience" title={t('experience.title')} subtitle={t('experience.subtitle')}>
+        <Text ta="center" c="dimmed">Chưa có kinh nghiệm/học vấn nào được chia sẻ.</Text>
+      </Section>
+    );
+  }
 
   const renderTimeline = (items: any[]) => (
     <Timeline

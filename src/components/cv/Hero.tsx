@@ -2,9 +2,9 @@ import { Container, Grid, Title, Text, Button, Group, Box, rem } from '@mantine/
 import { IconDownload, IconArrowRight } from '@tabler/icons-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { APP_CONFIG } from '@/constants';
 import SafeImage from '@/components/common/SafeImage';
 import profileImg from '@/assets/images/profile.jpg';
+import { getImageUrl } from '@/services/api';
 
 interface HeroProps {
   profile?: any;
@@ -13,10 +13,10 @@ interface HeroProps {
 const Hero = ({ profile }: HeroProps) => {
   const { t } = useTranslation();
 
-  const name = profile?.name || APP_CONFIG.NAME;
-  const title = profile?.title || t('hero.subtitle');
-  const bio = profile?.bio || t('hero.description');
-  const avatar = profile?.avatar ? `https://profile-be-js9l.onrender.com${profile.avatar}` : profileImg;
+  const name = profile?.name || '';
+  const title = profile?.title || '';
+  const bio = profile?.bio || '';
+  const avatar = profile?.avatar ? getImageUrl(profile.avatar) : profileImg;
 
   return (
     <Box
