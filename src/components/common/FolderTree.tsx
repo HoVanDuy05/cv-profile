@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Group, Text, UnstyledButton, Collapse, rem } from '@mantine/core';
 import { IconFolder, IconFolderOpen, IconFile, IconChevronRight, IconChevronDown } from '@tabler/icons-react';
 
