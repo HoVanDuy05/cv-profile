@@ -22,7 +22,6 @@ import {
   IconExternalLink,
   IconBrandGithub,
   IconChevronLeft,
-  IconCalendarEvent,
   IconCode
 } from '@tabler/icons-react';
 import { fetchProjectBySlug } from '@/services/api';
