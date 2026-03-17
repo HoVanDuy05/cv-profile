@@ -22,6 +22,14 @@ export const fetchCVData = async (): Promise<CVData> => {
   return response.json();
 };
 
+export const fetchProjectBySlug = async (slug: string): Promise<any> => {
+  const response = await fetch(`${API_BASE_URL}/projects/${slug}`);
+  if (!response.ok) {
+    throw new Error('Project not found');
+  }
+  return response.json();
+};
+
 export const sendContactMessage = async (data: {
   name: string;
   email: string;

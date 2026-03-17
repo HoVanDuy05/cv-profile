@@ -1,4 +1,4 @@
-import { SimpleGrid, Card, Text, Badge, Button, Group } from '@mantine/core';
+import { SimpleGrid, Card, Text, Badge, Button, Group, Box } from '@mantine/core';
 import { IconExternalLink, IconCode } from '@tabler/icons-react';
 import Section from '@/components/common/Section';
 import SafeImage from '@/components/common/SafeImage';
@@ -7,13 +7,21 @@ import { motion } from 'framer-motion';
 import { getImageUrl } from '@/services/api';
 import project1 from '@/assets/images/project1.png';
 
+import { Link } from 'react-router-dom';
+
 interface Project {
+  id: number;
   title: string;
+  slug: string;
+  subtitle?: string;
   description: string;
+  content?: string;
   tags: string[];
   image: string;
   demo_link: string;
   github_link: string;
+  live_link?: string;
+  is_featured: boolean;
 }
 
 interface ProjectsProps {
@@ -25,12 +33,16 @@ const Projects = ({ projects: dynamicProjects }: ProjectsProps) => {
   
   const projects = dynamicProjects || [
     {
+      id: 1,
       title: 'Hệ thống Quản lý Doanh nghiệp',
+      slug: 'he-thong-quan-ly-doanh-nghiep',
+      subtitle: 'ERP Solution',
       description: 'Nền tảng ERP tích hợp quản lý kho, nhân sự và tài chính.',
       tags: ['React', 'Node.js', 'PostgreSQL'],
       image: project1,
       demo_link: '#',
-      github_link: '#'
+      github_link: '#',
+      is_featured: true
     }
   ];
 
@@ -74,8 +86,14 @@ const Projects = ({ projects: dynamicProjects }: ProjectsProps) => {
                   />
                 </Card.Section>
 
-                <Group justify="space-between" mt="md" mb="xs">
-                  <Text fw={700} size="lg">{project.title}</Text>
+                <Group justify="space-between" mt="md" mb="xs" wrap="nowrap">
+                  <Box>
+                    <Text fw={700} size="lg" lineClamp={1}>{project.title}</Text>
+                    {project.subtitle && <Text size="xs" c="dimmed">{project.subtitle}</Text>}
+                  </Box>
+                  {project.is_featured && (
+                    <Badge color="yellow" variant="filled" size="xs">Featured</Badge>
+                  )}
                 </Group>
 
                 <Group gap={5} mb="md">
@@ -84,9 +102,14 @@ const Projects = ({ projects: dynamicProjects }: ProjectsProps) => {
                   ))}
                 </Group>
 
-                <Text size="sm" c="dimmed" mb="xl" style={{ flex: 1 }}>
-                  {project.description}
-                </Text>
+                <Text 
+                  size="sm" 
+                  c="dimmed" 
+                  mb="xl" 
+                  style={{ flex: 1 }}
+                  component="div"
+                  dangerouslySetInnerHTML={{ __html: project.description || '' }}
+                />
 
                 <Group gap="sm" mt="auto">
                   <Button 
@@ -94,9 +117,8 @@ const Projects = ({ projects: dynamicProjects }: ProjectsProps) => {
                     color="violet" 
                     fullWidth 
                     leftSection={<IconExternalLink size={16} />}
-                    component="a"
-                    href={project.demo_link}
-                    target="_blank"
+                    component={Link}
+                    to={`/projects/${project.slug}`}
                   >
                     {t('projects.viewDetails')}
                   </Button>

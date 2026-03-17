@@ -11,6 +11,20 @@ import type { CVData } from '@/services/api';
 import { AnimatePresence, motion } from 'framer-motion';
 import LoadingScreen from '@/components/common/LoadingScreen';
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProjectDetails from '@/pages/ProjectDetails';
+
+const Home = ({ cvData }: { cvData: CVData | null }) => (
+  <MainLayout>
+    <Hero profile={cvData?.profile} />
+    <About profile={cvData?.profile} />
+    <Experience experiences={cvData?.experiences} />
+    <Projects projects={cvData?.projects} />
+    <Skills skills={cvData?.skills} />
+    <Contact profile={cvData?.profile} />
+  </MainLayout>
+);
+
 function App() {
   const [cvData, setCvData] = useState<CVData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -28,7 +42,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <BrowserRouter>
       <AnimatePresence>
         {loading && (
           <motion.div
@@ -41,15 +55,11 @@ function App() {
           </motion.div>
         )}
       </AnimatePresence>
-      <MainLayout>
-      <Hero profile={cvData?.profile} />
-      <About profile={cvData?.profile} />
-      <Experience experiences={cvData?.experiences} />
-      <Projects projects={cvData?.projects} />
-      <Skills skills={cvData?.skills} />
-      <Contact profile={cvData?.profile} />
-      </MainLayout>
-    </>
+      <Routes>
+        <Route path="/" element={<Home cvData={cvData} />} />
+        <Route path="/projects/:slug" element={<ProjectDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
